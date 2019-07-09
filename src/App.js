@@ -1,17 +1,46 @@
 import React, {Component} from 'react';
+import PlayerCard from './PlayerCard'
 
 class Game extends Component {
+  constructor() {
+    super();
+    this.signs = ["rock", "scissors", "paper"]
+    this.state = {
+      playerOne: "rock",
+      playerTwo: "scissors",
+    }
+  }
+
+  playGame = () => {
+    // this is where we are going to create the functionality to play the game
+    this.setState({
+      playerOne: this.signs[Math.floor(Math.random() * 3)],
+      playerTwo: this.signs[Math.floor(Math.random() * 3)],
+    })
+  }
+
+  decideWinner= () => {
+    if (this.state.playerOne === this.state.playerTwo){
+      return 'tie'
+    }
+    else if ((this.state.playerOne === 'rock' && this.state.playerTwo === 'scissors') || 
+     ) {
+      return 'playerOne Wins!'
+    }
+    else {
+      return "playerTwo Wins!"
+    }
+  }
+
   render() {
     return (
       <div className='style'>
         <div>
-          <div className='player-card'></div>
-          <div className='player2'></div>
+          <PlayerCard sign={this.state.playerOne}/>
+          <PlayerCard sign={this.state.playerTwo}/>
         </div>
-        <div>
-          <div className='winner'>Winner winner chicken dinner</div>
-        </div>
-        <button type='button'>Click to play</button>
+        <div className='winner'>{this.decideWinner()}>who won?</div>
+        <button type='button' onClick={this.playGame}>Click to play</button>
       </div>
     )
   }
