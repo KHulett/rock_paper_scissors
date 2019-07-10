@@ -24,7 +24,9 @@ class Game extends Component {
       return 'tie'
     }
     else if ((this.state.playerOne === 'rock' && this.state.playerTwo === 'scissors') || 
-     ) {
+    (this.state.playerOne === 'scissors' && this.state.playerTwo === 'paper') ||
+    (this.state.playerOne === 'paper' && this.state.playerTwo === 'rock')){
+      
       return 'playerOne Wins!'
     }
     else {
@@ -39,7 +41,7 @@ class Game extends Component {
           <PlayerCard sign={this.state.playerOne}/>
           <PlayerCard sign={this.state.playerTwo}/>
         </div>
-        <div className='winner'>{this.decideWinner()}>who won?</div>
+        <div className='winner'>{this.decideWinner()}></div>
         <button type='button' onClick={this.playGame}>Click to play</button>
       </div>
     )
